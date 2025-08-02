@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Marksheet Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-br from-yellow-50 via-pink-50 to-blue-50 min-h-screen flex items-center justify-center"
+  >
+    <div
+      class="bg-white/80 shadow-2xl rounded-2xl p-10 w-full max-w-md border border-yellow-100"
+    >
+      <h1
+        class="text-3xl font-extrabold text-center text-yellow-600 mb-8 tracking-tight drop-shadow"
+      >
+        Marksheet Calculator
+      </h1>
+      <form method="post" action="" id="marksheetForm" class="space-y-6">
+        {% csrf_token %}
+        <div>
+          <label for="sub1" class="block text-gray-700 font-semibold mb-1"
+            >Subject 1</label
+          >
+          <input
+            type="number"
+            id="sub1"
+            name="sub1"
+            class="w-full px-4 py-2 border-2 border-yellow-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-yellow-50"
+            required
+            value="{{sub1}}"
+          />
+        </div>
+        <div>
+          <label for="sub2" class="block text-gray-700 font-semibold mb-1"
+            >Subject 2</label
+          >
+          <input
+            type="number"
+            id="sub2"
+            name="sub2"
+            class="w-full px-4 py-2 border-2 border-pink-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50"
+            required
+            value="{{sub2}}"
+          />
+        </div>
+        <div>
+          <label for="sub3" class="block text-gray-700 font-semibold mb-1"
+            >Subject 3</label
+          >
+          <input
+            type="number"
+            id="sub3"
+            name="sub3"
+            class="w-full px-4 py-2 border-2 border-blue-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50"
+            required
+            value="{{sub3}}"
+          />
+        </div>
+        <div>
+          <label for="sub4" class="block text-gray-700 font-semibold mb-1"
+            >Subject 4</label
+          >
+          <input
+            type="number"
+            id="sub4"
+            name="sub4"
+            class="w-full px-4 py-2 border-2 border-indigo-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-indigo-50"
+            required
+            value="{{sub4}}"
+          />
+        </div>
+        <div>
+          <label for="sub5" class="block text-gray-700 font-semibold mb-1"
+            >Subject 5</label
+          >
+          <input
+            type="number"
+            id="sub5"
+            name="sub5"
+            class="w-full px-4 py-2 border-2 border-green-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 bg-green-50"
+            required
+            value="{{sub5}}"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-yellow-400 via-pink-400 to-blue-400 hover:from-yellow-500 hover:via-pink-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-200 text-lg tracking-wide"
+        >
+          Calculate Result
+        </button>
+        <div>
+          <label for="total" class="block text-gray-700 font-semibold mb-1"
+            >Total Marks</label
+          >
+          <input
+            type="text"
+            id="total"
+            name="total"
+            value="{{total}}"
+            class="w-full px-4 py-2 border-2 border-yellow-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-yellow-50 text-center text-lg font-bold"
+            readonly
+          />
+        </div>
+        <div>
+          <label for="percentage" class="block text-gray-700 font-semibold mb-1"
+            >Percentage</label
+          >
+          <input
+            type="text"
+            id="percentage"
+            name="percentage"
+            value="{{percent}}"
+            class="w-full px-4 py-2 border-2 border-pink-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-300 bg-pink-50 text-center text-lg font-bold"
+            readonly
+          />
+        </div>
+        <div>
+          <label for="division" class="block text-gray-700 font-semibold mb-1"
+            >Division</label
+          >
+          <input
+            type="text"
+            id="division"
+            name="division"
+            value="{{div}}"
+            class="w-full px-4 py-2 border-2 border-blue-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 text-center text-lg font-bold"
+            readonly
+          />
+        </div>
+      </form>
+      <div class="mt-8 text-center">
+        <a
+          href="/"
+          class="inline-block bg-gradient-to-r from-indigo-400 via-pink-400 to-yellow-400 hover:from-indigo-500 hover:via-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-8 rounded-full shadow-lg transition duration-300 text-lg tracking-wide"
+        >
+          ← Go Back to Home
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

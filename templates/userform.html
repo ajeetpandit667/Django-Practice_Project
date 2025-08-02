@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+      <h1 class="text-2xl font-bold text-center text-indigo-600 mb-6">User Form</h1>
+
+      <form method="post" action="{% url 'submitform' %}" class="space-y-4">
+        <!-- CSRF Token for Django -->
+        {% csrf_token %}
+         {{ form.as_p }}
+        {% comment %} <div>
+          <label for="num1" class="block text-gray-700 font-medium mb-1">Number 1</label>
+          <input
+            type="text"
+            id="num1"
+            name="num1"
+            class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <div>
+          <label for="num2" class="block text-gray-700 font-medium mb-1">Number 2</label>
+          <input
+            type="text"
+            id="num2"
+            name="num2"
+            class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div> {% endcomment %}
+
+        <button
+          type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+        >
+          SAVE
+        </button>
+        <div>
+          <label for="sum" class="block text-gray-700 font-medium mb-1">Sum is here</label>
+          <input
+            type="text"
+            id="sum"
+            name="sum"
+            class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            value="{{ output }}"
+            readonly
+          />
+        </div>
+
+      </form>
+
+      <div class="mt-6 text-center">
+        <a href="/" class="text-sm text-indigo-500 hover:underline">← Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
