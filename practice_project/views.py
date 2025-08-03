@@ -1,15 +1,23 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from .forms import userForm
-
+from service.models import Student
+from news.models import News
 
 def homePage(request):
-  return render(request,'home.html')
+    serviceData=Student.objects.all().order_by('-marks')[:3] # sorted in decending order and limit the students by sclicing
+    data={
+        'serviceData':serviceData
+    }
+    return render(request,'home.html',data)
+ 
 
 def aboutPage(request):
-  if request.method == "GET":
-    output=request.GET.get('output')
-  return render(request,'about.html',{"output":output})
+    
+    output = None
+    if request.method == "GET":
+        output = request.GET.get('output')
+    return render(request, 'about.html', {"output": output})
 
 def contactPage(request):
   return render(request,'contact.html')
@@ -103,3 +111,14 @@ def userformPage(request):
     else:
         form = userForm()
     return render(request, 'userform.html', {'form': form, 'output': finalAns})
+
+def NewsDetails(request, newsId):
+    try:
+        news = News.objects.get(id=newsId)
+    except News.DoesNotExist:
+        return HttpResponse("News not found", status=404)
+    return render(request, 'news_detail.html', {'news': news})
+
+def NewsList(request):
+    newsData = News.objects.all()
+    return render(request, 'news.html', {'newsData': newsData})

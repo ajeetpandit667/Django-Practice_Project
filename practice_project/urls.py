@@ -27,5 +27,7 @@ urlpatterns = [
     path('services/', views.servicePage,name='service'),
     path("user-form/", views.userformPage, name="userform"),
     path("calculator/", views.calculator, name="calculator"),
-    path("marksheet/", views.marksheet)
+    path("marksheet/", views.marksheet),
+    path("news/", views.NewsList, name='news'),
+    path("news-details/<int:newsId>/", views.NewsDetails, name='news-details')
 ]
