@@ -112,12 +112,13 @@ def userformPage(request):
         form = userForm()
     return render(request, 'userform.html', {'form': form, 'output': finalAns})
 
-def NewsDetails(request, newsId):
+def NewsDetails(request, slug):
     try:
-        news = News.objects.get(id=newsId)
+        news = News.objects.get(news_slug=slug)
     except News.DoesNotExist:
         return HttpResponse("News not found", status=404)
     return render(request, 'news_detail.html', {'news': news})
+
 
 def NewsList(request):
     newsData = News.objects.all()
