@@ -28,6 +28,6 @@ urlpatterns = [
     path("user-form/", views.userformPage, name="userform"),
     path("calculator/", views.calculator, name="calculator"),
     path("marksheet/", views.marksheet),
-    path("news/", views.NewsList, name='news'),
+    path("news/", views.news_list, name='news'),
     path("news-details/<slug:slug>/", views.NewsDetails, name='news-details')
 ]

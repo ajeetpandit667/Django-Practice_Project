@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .forms import userForm
 from service.models import Student
 from news.models import News
+from django.core.paginator import Paginator
 
 def homePage(request):
     serviceData=Student.objects.all().order_by('-marks')[:3] # sorted in decending order and limit the students by sclicing
@@ -120,6 +121,14 @@ def NewsDetails(request, slug):
     return render(request, 'news_detail.html', {'news': news})
 
 
-def NewsList(request):
-    newsData = News.objects.all()
-    return render(request, 'news.html', {'newsData': newsData})
+def news_list(request):
+    news_all = News.objects.all()  # For marquee
+    paginator = Paginator(news_all, 4)  # 4 news per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'news.html', {
+        'page_obj': page_obj,  # Paginated news for grid
+        'news_all': news_all   # All news for marquee
+    })

@@ -12,7 +12,7 @@
             direction="right"
             class="bg-indigo-600 text-white py-4 text-lg font-semibold tracking-wide rounded-b-xl shadow"
         >
-            {% for news in newsData %}
+            {% for news in news_all %}
                 <a href="{% url 'news-details' news.news_slug %}">
                     <span class="mx-8">📰 {{ news.title }}</span>
                 </a>
@@ -25,9 +25,10 @@
         <h1 class="text-4xl font-extrabold text-center text-indigo-700 mb-8 tracking-tight drop-shadow">
             Latest News
         </h1>
-        {% if newsData %}
+
+        {% if page_obj %}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {% for news in newsData %}
+                {% for news in page_obj %}
                     <div class="bg-indigo-50 border border-indigo-200 rounded-xl shadow p-6 flex flex-col">
                         <div class="text-xl font-bold text-indigo-800 mb-2">
                             {{ news.title }}
@@ -41,6 +42,63 @@
         {% else %}
             <div class="text-center text-gray-400 mt-8">No news available.</div>
         {% endif %}
+
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <div class="flex justify-center mt-8">
+            <nav aria-label="Page navigation">
+                <ul class="inline-flex items-center -space-x-px">
+                    {% if page_obj.has_previous %}
+                        <li>
+                            <a href="?page={{ page_obj.previous_page_number }}"
+                               class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">
+                                Previous
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <span class="px-3 py-2 ml-0 leading-tight text-gray-400 bg-gray-100 border border-gray-300 rounded-l-lg">
+                                Previous
+                            </span>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li>
+                                <span class="px-3 py-2 text-white bg-indigo-600 border border-gray-300">
+                                    {{ num }}
+                                </span>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="?page={{ num }}"
+                                   class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+                                    {{ num }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li>
+                            <a href="?page={{ page_obj.next_page_number }}"
+                               class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">
+                                Next
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <span class="px-3 py-2 leading-tight text-gray-400 bg-gray-100 border border-gray-300 rounded-r-lg">
+                                Next
+                            </span>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
+
         <div class="mt-8 text-center">
             <a
                 href="/"
